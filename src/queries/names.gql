@@ -1,0 +1,10 @@
+query CountryNames {
+  Country {
+    _id
+    name
+    capital
+    currencies {
+      code
+    }
+  }
+}

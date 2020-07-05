@@ -1,0 +1,39 @@
+# Endpoint API, the following URL is a example
+schema: https://countries-274616.ew.r.appspot.com/graphql/
+overwrite: true
+
+# Format files
+hooks:
+  afterAllFileWrite:
+    - prettier --write
+
+generates:
+  # Get schemas from server
+  src/queries/autogenerate/schemas.tsx:
+    documents: 'src/queries/**/**.gql'
+    plugins:
+      - typescript
+
+  # Create operations based on queries 
+  src/queries/autogenerate/operations.tsx:
+    documents: 'src/queries/**/**.gql'
+    preset: import-types
+    presetConfig:
+      typesPath: ./schemas
+    plugins:
+      - typescript-operations
+
+  # 1. Export GraphQL documents 
+  # 2. React interface
+  src/queries/autogenerate/hooks.tsx:
+    documents: 'src/queries/**/**.gql'
+    preset: import-types
+    presetConfig:
+      typesPath: ./operations
+    plugins:
+      - typescript-react-apollo
+    config:
+      # Optionals
+      withHOC: false
+      withComponent: false
+      withHooks: true
