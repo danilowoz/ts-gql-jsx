@@ -2,7 +2,7 @@
 
 Automate the workflow of the generation of the types and custom React hooks, in React-Typescript applications with GraphQL Code Generator.
 
-Check it out the full article here.
+[https://significa.co/blog/generating-typescript-types-and-react-hooks-based-on-graphql-endpoint](Check it out the full article here.)
 
 ```
 📦 my-project
